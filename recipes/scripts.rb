@@ -27,7 +27,7 @@ node[:weechat][:users].each do |username|
     end
 
     remote_file local_path do
-      source = base_scripts_url + "#{script[:name]}"
+      source (base_scripts_url + "#{script[:name]}")
       if script[:autoload]
         notifies :create, resources(:link => autoload_symlink_path), :immediately
       end
