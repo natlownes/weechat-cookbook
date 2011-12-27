@@ -3,8 +3,20 @@
 weechat-cookbook
 
 = REQUIREMENTS:
+  
+  user_utilities cookbook:  https://natlownes@github.com/natlownes/user_utilities-cookbook.git
 
 = ATTRIBUTES:
+
+  Example attributes
+
+  "weechat": {
+  "users":["nat"],
+  "scripts": [
+    {"name": "jabber.py","autoload": true},
+    {"name": "url_shorten.rb", "autoload": true}
+  ]
+}
 
 = USAGE:
 
