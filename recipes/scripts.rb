@@ -5,16 +5,17 @@ script_languages = {
 
 scripts_directories = script_languages.values.map {|name| ".weechat/#{name}/autoload" }
 
-scripts_directories.each do |directory_name|
-  directory directory_name do
-    recursive true
-    action    :create
-  end
-end
-
 base_scripts_url = "http://www.weechat.org/files/scripts/"
 
 node[:weechat][:users].each do |username|
+  scripts_directories.each do |directory_name|
+    directory (File.join(UserUtilities.home_directory_for_user(username), directory_name)) do
+      recursive   true
+      owner       username
+      action      :create
+    end
+  end
+
   node[:weechat][:scripts].each do |script|
     script_language = script[:name].split('.').last
     local_path = File.join(UserUtilities.home_directory_for_user(username), ".weechat", script_languages[script_language], script[:name]) 
