@@ -8,8 +8,22 @@ scripts_directories = script_languages.values.map {|name| ".weechat/#{name}/auto
 base_scripts_url = "http://www.weechat.org/files/scripts/"
 
 node[:weechat][:users].each do |username|
+  user_home = UserUtilities.home_directory_for_user(username)
+
+  directory File.join(user_home, '.weechat') do
+    owner  username
+    action :create
+  end
+
+  script_languages.values.each do |language|
+    directory File.join(user_home, '.weechat', language) do
+      owner username
+      action :create
+    end
+  end
+
   scripts_directories.each do |directory_name|
-    directory (File.join(UserUtilities.home_directory_for_user(username), directory_name)) do
+    directory (user_name, directory_name)) do
       recursive   true
       owner       username
       action      :create
@@ -18,8 +32,8 @@ node[:weechat][:users].each do |username|
 
   node[:weechat][:scripts].each do |script|
     script_language = script[:name].split('.').last
-    local_path = File.join(UserUtilities.home_directory_for_user(username), ".weechat", script_languages[script_language], script[:name]) 
-    autoload_symlink_path = File.join(UserUtilities.home_directory_for_user(username), ".weechat", script_languages[script_language], "autoload", script[:name]) 
+    local_path = File.join(user_home, ".weechat", script_languages[script_language], script[:name]) 
+    autoload_symlink_path = File.join(user_home, ".weechat", script_languages[script_language], "autoload", script[:name]) 
 
     link autoload_symlink_path do
       to local_path
@@ -33,4 +47,5 @@ node[:weechat][:users].each do |username|
       end
     end
   end
+
 end
