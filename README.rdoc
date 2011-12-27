@@ -1,0 +1,10 @@
+= DESCRIPTION:
+
+weechat-cookbook
+
+= REQUIREMENTS:
+
+= ATTRIBUTES:
+
+= USAGE:
+
