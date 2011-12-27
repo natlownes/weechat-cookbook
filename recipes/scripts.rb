@@ -5,7 +5,7 @@ script_languages = {
 
 scripts_directories = script_languages.values.map {|name| ".weechat/#{name}/autoload" }
 
-script_directories.each do |directory_name|
+scripts_directories.each do |directory_name|
   directory directory_name do
     recursive true
     action    :create
