@@ -17,8 +17,8 @@ base_scripts_url = "http://www.weechat.org/files/scripts/"
 node[:weechat][:users].each do |username|
   node[:weechat][:scripts].each do |script|
     script_language = script[:name].split('.').last
-    local_path = File.join(home_directory_for_user(username), ".weechat", script_languages[script_language], script[:name]) 
-    autoload_symlink_path = File.join(home_directory_for_user(username), ".weechat", script_languages[script_language], "autoload", script[:name]) 
+    local_path = File.join(UserUtilities.home_directory_for_user(username), ".weechat", script_languages[script_language], script[:name]) 
+    autoload_symlink_path = File.join(UserUtilities.home_directory_for_user(username), ".weechat", script_languages[script_language], "autoload", script[:name]) 
 
     link autoload_symlink_path do
       to local_path
