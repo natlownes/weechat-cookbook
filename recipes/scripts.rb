@@ -9,18 +9,7 @@ base_scripts_url = "http://www.weechat.org/files/scripts/"
 
 node[:weechat][:users].each do |username|
   user_home = UserUtilities.home_directory_for_user(username)
-
-  directory File.join(user_home, '.weechat') do
-    owner  username
-    action :create
-  end
-
-  script_languages.values.each do |language|
-    directory File.join(user_home, '.weechat', language) do
-      owner username
-      action :create
-    end
-  end
+  weechat_home = File.join(user_home, '.weechat')
 
   scripts_directories.each do |directory_name|
     directory File.join(username, directory_name) do
@@ -46,6 +35,15 @@ node[:weechat][:users].each do |username|
         notifies :create, resources(:link => autoload_symlink_path), :immediately
       end
     end
+  end
+
+  execute "update weechat owner to #{username}" do
+    command "chown -R #{username} #{weechat_home}"
+    user    "root"
+  end
+
+  execute "update weechat mode" do
+    command "chmod -R 700 #{weechat_home}"
   end
 
 end
