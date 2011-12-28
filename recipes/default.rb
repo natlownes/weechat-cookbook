@@ -52,7 +52,7 @@ node[:weechat][:users].each do |user|
     source "logger.conf.erb"
   end
 
-  execute "update weechat owner to #{username}" do
+  execute "update weechat owner to #{user[:name]}" do
     command "chown -R #{user[:name]} #{weechat_home}"
   end
 
