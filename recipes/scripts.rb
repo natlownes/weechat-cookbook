@@ -14,7 +14,7 @@ node[:weechat][:users].each do |user|
   scripts_directories.each do |directory_name|
     directory File.join(user_home, directory_name) do
       recursive   true
-      owner       username
+      owner       user[:name]
       action      :create
     end
   end
