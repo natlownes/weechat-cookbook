@@ -1,0 +1,27 @@
+#
+# jabber.conf -- weechat v0.3.4
+#
+
+[look]
+debug = off
+
+[color]
+message_join = green
+message_quit = red
+
+[server]
+<% @servers.each do |server| %>
+<%= server[:name] %>.autoconnect = <%= server[:autoconnect] %>
+<%= server[:name] %>.autoreconnect = <%= server[:autoreconnect] %>
+<%= server[:name] %>.away_priority = 0
+<%= server[:name] %>.jid = "<%= server[:jid] %>"
+<%= server[:name] %>.password = "<%= server[:password] %>"
+<%= server[:name] %>.ping_interval = 0
+<%= server[:name] %>.ping_timeout = 10
+<%= server[:name] %>.port = <%= server[:port] %>
+<%= server[:name] %>.priority = 8
+<%= server[:name] %>.private = <%= server[:private] %>
+<%= server[:name] %>.server = "<%= server[:server] %>"
+<% end %>
+
+[jid_aliases]

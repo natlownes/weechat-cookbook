@@ -11,12 +11,54 @@ weechat-cookbook
   Example attributes
 
   "weechat": {
-  "users":["nat"],
-  "scripts": [
-    {"name": "jabber.py","autoload": true},
-    {"name": "url_shorten.rb", "autoload": true}
-  ]
-}
+    "users":[
+      {
+        "name":"nat",
+        "scripts": [
+          {"name": "jabber.py","autoload": true},
+          {"name": "url_shorten.rb", "autoload": true}
+        ],
+        "irc": {
+          "servers": [
+            {
+              "name": "freenode",
+              "addresses": "chat.freenode.net/6667",
+              "username": "nattyd",
+              "realname": "Nat",
+              "command": "/msg nickserv identify securepa$$$word",
+              "msg_quit": "Beast mode activated.",
+              "nicknames": [
+                "nattyd",
+                "nathanield",
+                "natd",
+                "natnatnat"
+              ],
+              "autojoin_channels": [
+                "#chef",
+                "#chef-hacking",
+                "#reddit-philadelphia",
+                "#ruby-fog"
+              ]
+            }
+          ]
+        },
+        "jabber": {
+          "servers": [
+            {
+              "name": "google",
+              "jid":  "example@gmail.com",
+              "password": "secure ass password",
+              "server": "talk.google.com",
+              "port": "5223",
+              "autoconnect": "on",
+              "autoreconnect": "on",
+              "private": "on"
+            }
+          ]
+        }
+      }
+    ],
+  }
 
 = USAGE:
 

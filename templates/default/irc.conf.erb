@@ -1,0 +1,150 @@
+#
+# irc.conf -- weechat v0.3.4
+#
+
+[look]
+color_nicks_in_server_messages = on
+color_pv_nick_like_channel = on
+display_away = local
+display_ctcp_blocked = on
+display_ctcp_reply = on
+display_ctcp_unknown = on
+display_host_join = on
+display_host_join_local = on
+display_host_quit = on
+display_old_topic = on
+display_pv_away_once = on
+display_pv_back = on
+hide_nickserv_pwd = on
+highlight_tags = "irc_privmsg,irc_notice"
+item_away_message = on
+item_channel_modes = on
+item_channel_modes_hide_key = off
+item_display_server = buffer_plugin
+item_nick_modes = on
+item_nick_prefix = on
+msgbuffer_fallback = current
+new_channel_position = none
+new_pv_position = none
+nick_color_force = ""
+nick_color_stop_chars = "_|["
+nick_completion_smart = speakers
+nick_prefix = ""
+nick_suffix = ""
+notice_as_pv = auto
+notify_tags_ison = "notify_message"
+notify_tags_whois = "notify_message"
+part_closes_buffer = off
+raw_messages = 256
+server_buffer = merge_with_core
+smart_filter = on
+smart_filter_delay = 5
+smart_filter_join = on
+smart_filter_quit = on
+topic_strip_colors = off
+
+[color]
+input_nick = lightcyan
+item_away = yellow
+item_channel_modes = default
+item_lag_counting = default
+item_lag_finished = yellow
+message_join = green
+message_quit = red
+nick_prefix = green
+nick_prefix_halfop = lightmagenta
+nick_prefix_op = lightgreen
+nick_prefix_user = blue
+nick_prefix_voice = yellow
+nick_suffix = green
+notice = green
+reason_quit = default
+
+[network]
+autoreconnect_delay_growing = 2
+autoreconnect_delay_max = 1800
+colors_receive = on
+colors_send = on
+lag_check = 60
+lag_disconnect = 0
+lag_min_show = 500
+lag_refresh_interval = 1
+notify_check_ison = 1
+notify_check_whois = 5
+send_unknown_commands = off
+
+[msgbuffer]
+
+[ctcp]
+
+[ignore]
+
+#[server_default]
+#addresses = ""
+#anti_flood_prio_high = 2
+#anti_flood_prio_low = 2
+#autoconnect = off
+#autojoin = ""
+#autoreconnect = on
+#autoreconnect_delay = 10
+#autorejoin = off
+#autorejoin_delay = 30
+#away_check = 0
+#away_check_max_nicks = 25
+#command = ""
+#command_delay = 0
+#connection_timeout = 60
+#default_msg_part = ""
+#default_msg_quit = ""
+#ipv6 = off
+#local_hostname = ""
+#nicks = ""
+#notify = ""
+#password = ""
+#proxy = ""
+#realname = ""
+#sasl_mechanism = plain
+#sasl_password = ""
+#sasl_timeout = 15
+#sasl_username = ""
+#ssl = off
+#ssl_cert = ""
+#ssl_dhkey_size = 2048
+#ssl_verify = on
+#username = ""
+#
+<% @servers.each do |server| %>
+[<%= server[:name] %>]
+<%= server[:name] %>.addresses = "<%= server[:addresses].join(',') %>"
+<%= server[:name] %>.proxy
+<%= server[:name] %>.ipv6
+<%= server[:name] %>.ssl
+<%= server[:name] %>.ssl_cert
+<%= server[:name] %>.ssl_dhkey_size
+<%= server[:name] %>.ssl_verify
+<%= server[:name] %>.password
+<%= server[:name] %>.sasl_mechanism
+<%= server[:name] %>.sasl_username
+<%= server[:name] %>.sasl_password
+<%= server[:name] %>.sasl_timeout
+<%= server[:name] %>.autoconnect = on
+<%= server[:name] %>.autoreconnect
+<%= server[:name] %>.autoreconnect_delay
+<%= server[:name] %>.nicks = "<%= server[:nicknames].join(',') %>"
+<%= server[:name] %>.username = "<%= server[:username] %>"
+<%= server[:name] %>.realname = "<%= server[:realname] %>"
+<%= server[:name] %>.local_hostname
+<%= server[:name] %>.command = "<%= server[:command] %>"
+<%= server[:name] %>.command_delay
+<%= server[:name] %>.autojoin = "<%= server[:autojoin_channels].join(',') if server[:autojoin_channels] %>"
+<%= server[:name] %>.autorejoin
+<%= server[:name] %>.autorejoin_delay
+<%= server[:name] %>.connection_timeout
+<%= server[:name] %>.anti_flood_prio_high
+<%= server[:name] %>.anti_flood_prio_low
+<%= server[:name] %>.away_check
+<%= server[:name] %>.away_check_max_nicks
+<%= server[:name] %>.default_msg_part
+<%= server[:name] %>.default_msg_quit = "<%= server[:msg_quit] %>"
+<%= server[:name] %>.notify
+<% end %>
