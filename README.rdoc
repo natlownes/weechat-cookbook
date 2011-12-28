@@ -22,7 +22,7 @@ weechat-cookbook
           "servers": [
             {
               "name": "freenode",
-              "addresses": "chat.freenode.net/6667",
+              "addresses": ["chat.freenode.net/6667"],
               "username": "nattyd",
               "realname": "Nat",
               "command": "/msg nickserv identify securepa$$$word",
