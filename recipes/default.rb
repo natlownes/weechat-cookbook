@@ -39,7 +39,7 @@ node[:weechat][:users].each do |user|
     template File.join(weechat_home, "jabber.conf") do
       source "jabber.conf.erb"
       variables(
-        :servers => user[:irc][:servers]
+        :servers => user[:jabber][:servers] || []
       )
     end
   end
