@@ -30,7 +30,7 @@ node[:weechat][:users].each do |user|
     template File.join(weechat_home, "irc.conf") do
       source "irc.conf.erb"
       variables(
-        :servers => user[:irc][:servers]
+        :servers => user[:irc][:servers] || []
       )
     end
   end
